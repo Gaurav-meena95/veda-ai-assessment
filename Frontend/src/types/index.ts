@@ -10,6 +10,8 @@ export interface Assignment {
   subject: string;
   className: string;
   generatedPaper?: GeneratedPaper;
+  createdAt?: string;
+  updatedAt?: string;
 }
 
 export interface QuestionTypeConfig {
