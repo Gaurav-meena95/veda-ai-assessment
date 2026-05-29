@@ -11,6 +11,8 @@
   --color-dark-btn: #1A1A1A;
   --color-active-green: #22C55E;
   
+  --font-sans: var(--font-bricolage-grotesque), system-ui, sans-serif;
+  
   --color-badge-easy-bg: #DCFCE7;
   --color-badge-easy-text: #16A34A;
   --color-badge-moderate-bg: #FEF9C3;

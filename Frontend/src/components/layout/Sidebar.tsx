@@ -33,15 +33,12 @@ export const Sidebar: React.FC = () => {
   return (
     <aside className="w-[260px] fixed left-0 top-0 h-screen bg-white border-r border-border-custom flex flex-col select-none z-30 font-sans">
       {/* VedaAI Logo Header */}
-      <div className="p-6 pb-4 flex items-center gap-2.5">
+      <div className="p-6 pb-3 flex items-center pl-8">
         <img 
           src="/logo.png" 
           alt="VedaAI Logo" 
-          className="w-10 h-10 object-contain rounded-xl shadow-xs"
+          className="h-9 w-auto object-contain select-none"
         />
-        <span className="text-2xl font-black tracking-tight text-text-primary">
-          Veda<span className="text-primary-orange">AI</span>
-        </span>
       </div>
 
       {/* Create Assignment Button Area */}
