@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { 
   Home, 
@@ -13,7 +14,6 @@ import {
 } from 'lucide-react';
 import { useAssignmentStore } from '@/store/useAssignmentStore';
 import { cn } from '@/lib/utils';
-import Button from '@/components/ui/Button';
 
 export const Sidebar: React.FC = () => {
   const pathname = usePathname();
@@ -34,9 +34,12 @@ export const Sidebar: React.FC = () => {
     <aside className="w-[260px] fixed left-0 top-0 h-screen bg-white border-r border-border-custom flex flex-col select-none z-30 font-sans">
       {/* VedaAI Logo Header */}
       <div className="p-6 pb-3 flex items-center pl-8">
-        <img 
+        <Image 
           src="/logo.png" 
           alt="VedaAI Logo" 
+          width={144}
+          height={36}
+          priority
           className="h-9 w-auto object-contain select-none"
         />
       </div>

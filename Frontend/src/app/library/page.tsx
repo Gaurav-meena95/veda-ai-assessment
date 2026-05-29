@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Library, Search, FileText, Download, Clock, Database, FileSpreadsheet, Eye } from 'lucide-react';
+import { Search, FileText, Download, Clock, Database, Eye } from 'lucide-react';
 
 const LIBRARY_ITEMS = [
   { id: '1', title: 'NCERT Class 8 Science - Chemical Effects of Electric Current', type: 'PDF Document', size: '4.2 MB', date: 'Yesterday', iconColor: 'bg-red-50 text-red-500 border-red-100' },

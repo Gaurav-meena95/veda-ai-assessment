@@ -15,7 +15,7 @@ interface AssignmentCardProps {
 export const AssignmentCard: React.FC<AssignmentCardProps> = ({ assignment, onDelete }) => {
   
   // Custom date formatting helper to match DD-MM-YYYY format in screenshot
-  const formatDateString = (dateString: string) => {
+  const formatDateString = (dateString?: string) => {
     try {
       if (!dateString) return 'N/A';
       if (/^\d{2}-\d{2}-\d{4}$/.test(dateString)) return dateString;

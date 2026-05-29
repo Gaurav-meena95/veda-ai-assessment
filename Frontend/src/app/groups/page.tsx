@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Users, Search, Plus, BookOpen, ArrowRight, UserCheck } from 'lucide-react';
+import { Search, Plus, ArrowRight, UserCheck } from 'lucide-react';
 
 const INITIAL_GROUPS = [
   { id: '1', grade: 'Grade 8', subject: 'Science', studentsCount: 32, avatarColor: 'bg-orange-100 text-primary-orange', lastAssigned: 'Quiz on Electricity (29-05-2026)' },

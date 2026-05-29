@@ -43,7 +43,7 @@ export default function Home() {
       if (/^\d{2}-\d{2}-\d{4}$/.test(dateString)) return dateString;
       const date = parseISO(dateString);
       return format(date, 'dd-MM-yyyy');
-    } catch (e) {
+    } catch {
       return dateString || 'N/A';
     }
   };

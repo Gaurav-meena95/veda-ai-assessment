@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { Sparkles, BarChart, CalendarRange, PenTool, ArrowRight, ShieldAlert } from 'lucide-react';
+import { Sparkles, BarChart, CalendarRange, PenTool, ArrowRight } from 'lucide-react';
 
 const TOOLS = [
   {

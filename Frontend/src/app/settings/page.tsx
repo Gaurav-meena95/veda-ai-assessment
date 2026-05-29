@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { toast } from 'react-hot-toast';
-import { Settings as SettingsIcon, ShieldCheck, Database, Key, School, Mail, UserCheck } from 'lucide-react';
+import { ShieldCheck, Database, Key, School } from 'lucide-react';
 
 export default function Settings() {
   const [groqKey, setGroqKey] = useState('gsk_************************************************');

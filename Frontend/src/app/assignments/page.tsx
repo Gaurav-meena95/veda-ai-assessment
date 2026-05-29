@@ -9,7 +9,6 @@ import { getAssignments, deleteAssignmentById } from '@/lib/api';
 import EmptyState from '@/components/assignments/EmptyState';
 import FilterBar from '@/components/assignments/FilterBar';
 import AssignmentGrid from '@/components/assignments/AssignmentGrid';
-import Button from '@/components/ui/Button';
 
 export default function AssignmentsPage() {
   const { assignments, setAssignments, deleteAssignment } = useAssignmentStore();
