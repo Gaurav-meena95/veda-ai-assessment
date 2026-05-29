@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Download, Sparkles } from 'lucide-react';
+import { Download } from 'lucide-react';
 
 interface AIMessageBannerProps {
   message?: string;
@@ -14,34 +14,28 @@ export const AIMessageBanner: React.FC<AIMessageBannerProps> = ({
   onDownloadClick,
   isDownloading = false
 }) => {
-  const displayMessage = message || "Certainly, John Doe! Here is the customized Question Paper for your Class 5th English assessment. It has been structured according to your custom parameters.";
+  // Matches screenshot banner copy perfectly!
+  const displayMessage = message || "Certainly, Lakshya! Here are customized Question Paper for your CBSE Grade 8 Science classes on the NCERT chapters:";
 
   return (
-    <div className="bg-dark-btn text-white rounded-2xl p-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 shadow-md border border-white/5 select-none animate-in fade-in duration-300">
-      {/* Dynamic message greet */}
-      <div className="flex items-start gap-4">
-        <div className="w-10 h-10 bg-primary-orange rounded-xl flex items-center justify-center text-white shrink-0 mt-0.5 shadow-md shadow-orange-500/20">
-          <Sparkles size={20} className="fill-white" />
-        </div>
-        <div className="space-y-1">
-          <h4 className="text-sm font-bold text-white tracking-wide">
-            VedaAI Assistant
-          </h4>
-          <p className="text-xs text-gray-300 leading-relaxed max-w-2xl">
-            {displayMessage}
-          </p>
-        </div>
-      </div>
+    <div className="bg-[#2A2A2A] text-white rounded-[24px] p-6 space-y-4 shadow-sm border border-white/5 select-none animate-in fade-in duration-300 font-sans">
+      
+      {/* 1. Header Copy Message (Text formatted elegantly as in screenshot) */}
+      <p className="text-sm font-semibold leading-relaxed tracking-tight text-white/95">
+        {displayMessage}
+      </p>
 
-      {/* Outlined Download Button */}
-      <button
-        onClick={onDownloadClick}
-        disabled={isDownloading}
-        className="w-full md:w-auto h-10 px-5 rounded-lg border border-white/30 hover:border-white bg-transparent hover:bg-white/5 text-xs font-bold text-white transition-all duration-150 active:scale-95 flex items-center justify-center gap-2 cursor-pointer disabled:opacity-40 disabled:pointer-events-none"
-      >
-        <Download size={14} className="stroke-[2.5]" />
-        <span>{isDownloading ? 'Building PDF...' : 'Download as PDF'}</span>
-      </button>
+      {/* 2. White Pill Download Button placed underneath the text (Exactly matches screenshot) */}
+      <div>
+        <button
+          onClick={onDownloadClick}
+          disabled={isDownloading}
+          className="flex items-center gap-2 px-6 py-2.5 bg-white text-black font-bold text-xs rounded-full shadow-sm hover:scale-[1.02] active:scale-95 transition-all duration-150 cursor-pointer disabled:opacity-50 disabled:pointer-events-none"
+        >
+          <Download size={14} className="stroke-[3px] text-black" />
+          <span>{isDownloading ? 'Building PDF...' : 'Download as PDF'}</span>
+        </button>
+      </div>
     </div>
   );
 };

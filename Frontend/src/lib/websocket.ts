@@ -14,8 +14,8 @@ export const connectWebSocket = (assignmentId?: string) => {
   }
 
   const url = assignmentId 
-    ? `ws://localhost:5000?assignmentId=${assignmentId}`
-    : 'ws://localhost:5000';
+    ? `ws://localhost:3000?assignmentId=${assignmentId}`
+    : 'ws://localhost:3000';
     
   try {
     ws = new WebSocket(url);

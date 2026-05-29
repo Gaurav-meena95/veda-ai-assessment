@@ -9,32 +9,16 @@ interface ProgressBarProps {
 
 export const ProgressBar: React.FC<ProgressBarProps> = ({ currentStep }) => {
   return (
-    <div className="w-full mb-8 select-none">
-      {/* Dynamic step labels */}
-      <div className="flex justify-between items-center mb-3">
-        <span className={cn(
-          "text-2xs font-extrabold uppercase tracking-widest transition-colors duration-300",
-          currentStep >= 1 ? "text-text-primary" : "text-text-secondary"
-        )}>
-          Step 1: Assignment Details
-        </span>
-        <span className={cn(
-          "text-2xs font-extrabold uppercase tracking-widest transition-colors duration-300",
-          currentStep >= 2 ? "text-text-primary" : "text-text-secondary"
-        )}>
-          Step 2: Generation Result
-        </span>
-      </div>
-      
-      {/* 2-segment progress bar lines */}
-      <div className="flex gap-3 h-1.5 w-full">
+    <div className="w-full mb-6 select-none">
+      {/* 2-segment progress bar lines without step text labels to match screenshot exactly */}
+      <div className="flex gap-2 h-1 w-full bg-gray-100 rounded-full overflow-hidden">
         <div className={cn(
-          "flex-1 h-full rounded-full transition-all duration-500",
-          currentStep >= 1 ? "bg-dark-btn" : "bg-gray-200"
+          "flex-1 h-full transition-all duration-500",
+          currentStep >= 1 ? "bg-[#1A1A1A]" : "bg-gray-200"
         )} />
         <div className={cn(
-          "flex-1 h-full rounded-full transition-all duration-500",
-          currentStep >= 2 ? "bg-dark-btn" : "bg-gray-200"
+          "flex-1 h-full transition-all duration-500",
+          currentStep >= 2 ? "bg-[#1A1A1A]" : "bg-gray-200"
         )} />
       </div>
     </div>

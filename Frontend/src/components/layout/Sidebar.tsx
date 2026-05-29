@@ -31,36 +31,35 @@ export const Sidebar: React.FC = () => {
   ];
 
   return (
-    <aside className="w-[260px] fixed left-0 top-0 h-screen bg-white border-r border-border-custom flex flex-col select-none z-30">
+    <aside className="w-[260px] fixed left-0 top-0 h-screen bg-white border-r border-border-custom flex flex-col select-none z-30 font-sans">
       {/* VedaAI Logo Header */}
-      <div className="p-6 pb-4 flex items-center gap-3">
-        <div className="w-10 h-10 bg-primary-orange rounded-xl flex items-center justify-center text-white font-extrabold text-xl shadow-md shadow-orange-500/20">
-          V
+      <div className="p-6 pb-4 flex items-center gap-2.5">
+        <div className="w-10 h-10 bg-black rounded-xl flex items-center justify-center shadow-md relative overflow-hidden group">
+          {/* Stylized V Logo Mark from Screenshot */}
+          <svg viewBox="0 0 100 100" className="w-6 h-6 text-orange-500 fill-current">
+            <path d="M15 15 C 35 15, 45 45, 50 85 C 55 45, 65 15, 85 15 C 65 35, 55 55, 50 85 C 45 55, 35 35, 15 15 Z" />
+          </svg>
         </div>
-        <span className="text-xl font-bold tracking-tight text-text-primary">
-          Veda<span className="text-primary-orange font-black">AI</span>
+        <span className="text-2xl font-black tracking-tight text-text-primary">
+          Veda<span className="text-primary-orange">AI</span>
         </span>
       </div>
 
       {/* Create Assignment Button Area */}
-      <div className="px-6 py-4">
+      <div className="px-5 py-4">
         <Link href="/assignments/create" passHref className="w-full block">
-          <Button 
-            variant="dark" 
-            size="pill-dark"
-            className="w-full flex items-center justify-center gap-2 hover:scale-[1.02] active:scale-95 duration-100 font-semibold"
+          <button 
+            className="w-full flex items-center justify-center gap-2 bg-[#1A1A1A] hover:bg-black text-white py-3 px-5 rounded-full duration-150 font-bold text-sm shadow-md active:scale-98 transition-all"
           >
-            <span className="text-primary-orange font-bold text-base">✦</span>
-            Create Assignment
-          </Button>
+            <span className="text-primary-orange text-lg font-black leading-none">✦</span>
+            <span>Create Assignment</span>
+          </button>
         </Link>
       </div>
 
       {/* Nav List */}
-      <nav className="flex-1 px-4 py-2 space-y-1">
+      <nav className="flex-1 px-3 py-2 space-y-1">
         {navItems.map((item) => {
-          // Check if item is active
-          // Since assignments starts with /assignments, match sub-paths too
           const isActive = item.href === '/' 
             ? pathname === '/' 
             : pathname.startsWith(item.href);
@@ -72,22 +71,22 @@ export const Sidebar: React.FC = () => {
               key={item.name} 
               href={item.href} 
               className={cn(
-                "flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-all duration-150 group",
+                "flex items-center gap-3.5 px-4 py-3 rounded-xl text-sm font-bold transition-all duration-150 group",
                 isActive 
-                  ? "bg-gray-100 text-text-primary font-semibold" 
-                  : "text-text-secondary hover:bg-gray-50 hover:text-text-primary"
+                  ? "bg-gray-100 text-text-primary" 
+                  : "text-[#666666] hover:bg-gray-50 hover:text-text-primary"
               )}
             >
               <Icon 
                 size={18} 
                 className={cn(
-                  "transition-colors",
-                  isActive ? "text-primary-orange" : "text-text-secondary group-hover:text-text-primary"
+                  "transition-colors stroke-[2.5px]",
+                  isActive ? "text-primary-orange" : "text-[#666666] group-hover:text-text-primary"
                 )} 
               />
-              <span className="flex-1">{item.name}</span>
+              <span className="flex-1 tracking-tight">{item.name}</span>
               {item.count !== undefined && item.count > 0 && (
-                <span className="bg-primary-orange text-white text-2xs font-bold px-2 py-0.5 rounded-full min-w-5 text-center shadow-sm">
+                <span className="bg-[#FF4D4D] text-white text-3xs font-black px-2 py-0.5 rounded-full min-w-[20px] text-center shadow-xs">
                   {item.count}
                 </span>
               )}
@@ -97,28 +96,37 @@ export const Sidebar: React.FC = () => {
       </nav>
 
       {/* Bottom Footer Section */}
-      <div className="p-4 border-t border-border-custom space-y-3">
+      <div className="p-4 border-t border-border-custom space-y-3 bg-white">
         <Link 
           href="/settings"
           className={cn(
-            "flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium text-text-secondary hover:bg-gray-50 hover:text-text-primary transition-all"
+            "flex items-center gap-3 px-4 py-2 rounded-xl text-sm font-bold text-[#666666] hover:bg-gray-50 hover:text-text-primary transition-all duration-150"
           )}
         >
-          <Settings size={18} />
+          <Settings size={18} className="stroke-[2.5px]" />
           <span>Settings</span>
         </Link>
 
-        {/* School Card */}
-        <div className="bg-gray-50 border border-border-custom rounded-xl p-3 flex items-center gap-3">
-          <div className="w-10 h-10 rounded-lg overflow-hidden bg-orange-100 border border-orange-200 flex items-center justify-center text-primary-orange font-bold text-sm">
-            HPS
+        {/* DPS Bokaro School Card (Replicated) */}
+        <div className="bg-gray-50 border border-border-custom rounded-2xl p-3 flex items-center gap-3 shadow-2xs">
+          {/* DPS Crest Logo */}
+          <div className="w-10 h-10 rounded-full shrink-0 overflow-hidden bg-white border border-[#2E7D32] flex items-center justify-center relative p-1 shadow-2xs">
+            <div className="w-full h-full rounded-full border-2 border-dashed border-[#2E7D32] flex items-center justify-center bg-white">
+              {/* DPS Inner Emblem Drawing in Green */}
+              <svg viewBox="0 0 100 100" className="w-5 h-5 text-[#2E7D32] fill-current">
+                <path d="M50 15 L80 45 L50 75 L20 45 Z" className="stroke-[#2E7D32] stroke-[5] fill-none" />
+                <circle cx="50" cy="45" r="10" />
+                <path d="M50 45 L50 75 M35 60 L65 60" className="stroke-[#2E7D32] stroke-[6]" />
+              </svg>
+            </div>
           </div>
+          
           <div className="flex-1 min-w-0">
-            <h4 className="text-xs font-bold text-text-primary truncate">
-              Harvard Public School
+            <h4 className="text-xs font-black text-text-primary truncate tracking-tight">
+              Delhi Public School
             </h4>
-            <p className="text-[10px] text-text-secondary truncate">
-              New York, USA
+            <p className="text-[10px] font-semibold text-[#888888] truncate mt-0.5">
+              Bokaro Steel City
             </p>
           </div>
         </div>

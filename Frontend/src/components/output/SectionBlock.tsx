@@ -2,7 +2,6 @@
 
 import React from 'react';
 import { Section } from '@/types';
-import Badge from '@/components/ui/Badge';
 
 interface SectionBlockProps {
   section: Section;
@@ -10,50 +9,39 @@ interface SectionBlockProps {
 
 export const SectionBlock: React.FC<SectionBlockProps> = ({ section }) => {
   return (
-    <div className="space-y-6 py-6 border-b border-border-custom/50 last:border-b-0 last:pb-0 first:pt-0">
+    <div className="space-y-6 py-6 border-b border-gray-100 last:border-b-0 last:pb-0 first:pt-0 font-sans">
       
-      {/* Centered Heading */}
-      <div className="text-center space-y-1.5 select-none">
-        <h3 className="font-black text-sm tracking-widest uppercase text-text-primary">
+      {/* 1. Centered Section Headings matching screenshot */}
+      <div className="text-center space-y-1 select-none">
+        <h3 className="font-black text-lg tracking-tight text-[#1A1A1A]">
           {section.title}
         </h3>
-        <h4 className="text-2xs font-extrabold text-text-secondary uppercase tracking-wider">
+        <h4 className="text-sm font-bold text-[#1A1A1A]">
           {section.questionType}
         </h4>
         {section.instruction && (
-          <p className="text-xs text-text-secondary italic leading-relaxed">
+          <p className="text-xs text-[#6B7280] italic leading-relaxed">
             {section.instruction}
           </p>
         )}
       </div>
 
-      {/* Numbered questions list */}
-      <ol className="space-y-4 pl-1">
+      {/* 2. Numbered questions list inline style (1. [Easy] Text [M Marks]) */}
+      <div className="space-y-3 pl-1">
         {section.questions.map((question) => (
-          <li 
+          <div 
             key={question.number} 
-            className="text-sm text-text-primary flex items-start justify-between gap-6 pl-2 py-1 hover:bg-gray-50/50 rounded-lg transition-colors group"
+            className="text-sm text-[#1A1A1A] leading-relaxed flex items-start gap-2 py-1"
           >
-            {/* Question Text */}
-            <div className="flex items-start gap-3">
-              <span className="font-bold text-text-primary group-hover:text-primary-orange transition-colors">
-                Q{question.number}.
-              </span>
-              <p className="font-semibold leading-relaxed text-text-primary/90">
-                {question.text}
-              </p>
-            </div>
-
-            {/* Badges & Marks info */}
-            <div className="flex items-center gap-2.5 shrink-0 mt-0.5">
-              <Badge difficulty={question.difficulty} />
-              <span className="text-3xs font-extrabold text-text-secondary bg-gray-100/70 border border-border-custom px-2 py-1 rounded-md uppercase tracking-wider">
-                {question.marks} {question.marks === 1 ? 'Mark' : 'Marks'}
-              </span>
-            </div>
-          </li>
+            <span className="font-bold shrink-0">{question.number}.</span>
+            <p className="font-medium">
+              <span className="font-bold text-gray-500 mr-1">[{question.difficulty}]</span>
+              {question.text}
+              <span className="font-bold text-[#1A1A1A] ml-1.5">[{question.marks} {question.marks === 1 ? 'Mark' : 'Marks'}]</span>
+            </p>
+          </div>
         ))}
-      </ol>
+      </div>
     </div>
   );
 };

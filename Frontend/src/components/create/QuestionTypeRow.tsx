@@ -13,12 +13,12 @@ interface QuestionTypeRowProps {
 }
 
 const QUESTION_TYPES = [
-  { value: 'MCQ', label: 'MCQ' },
+  { value: 'Multiple Choice Questions', label: 'Multiple Choice Questions' },
   { value: 'Short Questions', label: 'Short Questions' },
-  { value: 'Long Questions', label: 'Long Questions' },
-  { value: 'Diagram/Graph', label: 'Diagram/Graph' },
+  { value: 'Diagram/Graph-Based Questions', label: 'Diagram/Graph-Based Questions' },
   { value: 'Numerical Problems', label: 'Numerical Problems' },
-  { value: 'Essay', label: 'Essay' }
+  { value: 'Long Questions', label: 'Long Questions' },
+  { value: 'Essay-Based Questions', label: 'Essay-Based Questions' }
 ];
 
 export const QuestionTypeRow: React.FC<QuestionTypeRowProps> = ({
@@ -28,27 +28,25 @@ export const QuestionTypeRow: React.FC<QuestionTypeRowProps> = ({
   isOnlyRow
 }) => {
   
-  // Number of questions counters (min 1, max 50)
   const adjustQuestions = (amount: number) => {
     const nextVal = Math.min(50, Math.max(1, config.noOfQuestions + amount));
     onUpdate({ ...config, noOfQuestions: nextVal });
   };
 
-  // Marks counters (min 1, max 20)
   const adjustMarks = (amount: number) => {
     const nextVal = Math.min(20, Math.max(1, config.marks + amount));
     onUpdate({ ...config, marks: nextVal });
   };
 
   return (
-    <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 bg-gray-50 border border-border-custom p-4 rounded-xl relative group transition-all duration-150 select-none">
+    <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 bg-white p-1 rounded-xl relative select-none">
       
-      {/* 1. Dropdown Column: Question Type */}
+      {/* 1. Dropdown Column */}
       <div className="flex-1 min-w-[200px]">
         <select
           value={config.type}
           onChange={(e) => onUpdate({ ...config, type: e.target.value })}
-          className="w-full h-11 px-3 py-2 bg-white border border-border-custom text-sm text-text-primary rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-orange/50 focus:border-primary-orange transition-all cursor-pointer font-medium"
+          className="w-full h-11 px-4 bg-gray-50 border border-[#E5E7EB] text-sm text-text-primary rounded-xl focus:outline-none focus:ring-1 focus:ring-primary-orange focus:border-primary-orange transition-all cursor-pointer font-bold tracking-tight"
         >
           {QUESTION_TYPES.map((qt) => (
             <option key={qt.value} value={qt.value}>
@@ -58,73 +56,69 @@ export const QuestionTypeRow: React.FC<QuestionTypeRowProps> = ({
         </select>
       </div>
 
-      {/* 2. Counter Column: No. of Questions */}
-      <div className="flex items-center gap-2.5">
-        <span className="text-2xs font-bold text-text-secondary uppercase tracking-wider block sm:hidden">
-          No. of Questions
-        </span>
-        <div className="flex items-center border border-border-custom bg-white rounded-lg overflow-hidden h-11">
+      {/* Remove (X) Button (Immediately next to select box as in screenshot) */}
+      {!isOnlyRow ? (
+        <button
+          type="button"
+          onClick={onRemove}
+          className="p-1.5 text-text-secondary hover:text-[#FF4D4D] transition-colors rounded-lg cursor-pointer"
+          aria-label="Remove row"
+        >
+          <X size={16} className="stroke-[2.5]" />
+        </button>
+      ) : (
+        <div className="w-8 h-8" /> // spacing placeholder
+      )}
+
+      {/* 2. Spinner: No. of Questions (Exactly matching - N + design in screenshot) */}
+      <div className="flex items-center gap-4">
+        <div className="flex items-center gap-2.5">
           <button
             type="button"
             onClick={() => adjustQuestions(-1)}
             disabled={config.noOfQuestions <= 1}
-            className="w-10 h-full flex items-center justify-center text-text-secondary hover:bg-gray-50 disabled:opacity-30 disabled:pointer-events-none active:bg-gray-100 transition-all cursor-pointer"
+            className="w-7 h-7 rounded-full border border-[#E5E7EB] bg-white flex items-center justify-center text-[#888888] hover:text-[#1A1A1A] disabled:opacity-30 disabled:pointer-events-none transition-all active:scale-90 cursor-pointer shadow-2xs"
           >
-            <Minus size={14} />
+            <Minus size={12} className="stroke-[3]" />
           </button>
-          <span className="w-10 text-center text-sm font-bold text-text-primary">
+          <span className="w-6 text-center text-xs font-black text-[#1A1A1A]">
             {config.noOfQuestions}
           </span>
           <button
             type="button"
             onClick={() => adjustQuestions(1)}
             disabled={config.noOfQuestions >= 50}
-            className="w-10 h-full flex items-center justify-center text-text-secondary hover:bg-gray-50 disabled:opacity-30 disabled:pointer-events-none active:bg-gray-100 transition-all cursor-pointer"
+            className="w-7 h-7 rounded-full border border-[#E5E7EB] bg-white flex items-center justify-center text-[#888888] hover:text-[#1A1A1A] disabled:opacity-30 disabled:pointer-events-none transition-all active:scale-90 cursor-pointer shadow-2xs"
           >
-            <Plus size={14} />
+            <Plus size={12} className="stroke-[3]" />
           </button>
         </div>
       </div>
 
-      {/* 3. Counter Column: Marks */}
-      <div className="flex items-center gap-2.5">
-        <span className="text-2xs font-bold text-text-secondary uppercase tracking-wider block sm:hidden">
-          Marks per Question
-        </span>
-        <div className="flex items-center border border-border-custom bg-white rounded-lg overflow-hidden h-11">
+      {/* 3. Spinner: Marks per Question (Exactly matching - M + design in screenshot) */}
+      <div className="flex items-center gap-4">
+        <div className="flex items-center gap-2.5">
           <button
             type="button"
             onClick={() => adjustMarks(-1)}
             disabled={config.marks <= 1}
-            className="w-10 h-full flex items-center justify-center text-text-secondary hover:bg-gray-50 disabled:opacity-30 disabled:pointer-events-none active:bg-gray-100 transition-all cursor-pointer"
+            className="w-7 h-7 rounded-full border border-[#E5E7EB] bg-white flex items-center justify-center text-[#888888] hover:text-[#1A1A1A] disabled:opacity-30 disabled:pointer-events-none transition-all active:scale-90 cursor-pointer shadow-2xs"
           >
-            <Minus size={14} />
+            <Minus size={12} className="stroke-[3]" />
           </button>
-          <span className="w-10 text-center text-sm font-bold text-text-primary">
+          <span className="w-6 text-center text-xs font-black text-[#1A1A1A]">
             {config.marks}
           </span>
           <button
             type="button"
             onClick={() => adjustMarks(1)}
             disabled={config.marks >= 20}
-            className="w-10 h-full flex items-center justify-center text-text-secondary hover:bg-gray-50 disabled:opacity-30 disabled:pointer-events-none active:bg-gray-100 transition-all cursor-pointer"
+            className="w-7 h-7 rounded-full border border-[#E5E7EB] bg-white flex items-center justify-center text-[#888888] hover:text-[#1A1A1A] disabled:opacity-30 disabled:pointer-events-none transition-all active:scale-90 cursor-pointer shadow-2xs"
           >
-            <Plus size={14} />
+            <Plus size={12} className="stroke-[3]" />
           </button>
         </div>
       </div>
-
-      {/* Remove (X) Button */}
-      {!isOnlyRow && (
-        <button
-          type="button"
-          onClick={onRemove}
-          className="absolute -top-2 -right-2 sm:relative sm:top-auto sm:right-auto p-1.5 bg-red-100 hover:bg-red-200 text-badge-challenging-text hover:text-red-700 rounded-full transition-all duration-150 active:scale-90 outline-none cursor-pointer border border-red-200"
-          aria-label="Remove question type row"
-        >
-          <X size={14} className="stroke-[2.5]" />
-        </button>
-      )}
     </div>
   );
 };

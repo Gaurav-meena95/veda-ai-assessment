@@ -4,57 +4,53 @@ import React from 'react';
 import { Document, Page, Text, View, StyleSheet } from '@react-pdf/renderer';
 import { GeneratedPaper } from '@/types';
 
-// Strict printable standard styles
+// Strict printable standard styles matching Delhi Public School exam papers
 const styles = StyleSheet.create({
   page: {
-    padding: 40,
+    padding: 50,
     fontFamily: 'Helvetica',
-    color: '#111111',
+    color: '#1A1A1A',
   },
   header: {
-    borderBottomWidth: 2,
-    borderBottomColor: '#111111',
-    borderBottomStyle: 'solid',
     paddingBottom: 10,
     textAlign: 'center',
     marginBottom: 10,
   },
   schoolName: {
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: 'bold',
-    textTransform: 'uppercase',
   },
   subHeader: {
     fontSize: 10,
-    color: '#4B5563',
     marginTop: 4,
+    fontWeight: 'bold',
   },
   infoRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+    borderTopWidth: 1,
     borderBottomWidth: 1,
-    borderBottomColor: '#E5E7EB',
-    paddingVertical: 6,
+    borderColor: '#1A1A1A',
+    paddingVertical: 8,
     fontSize: 9,
-    color: '#4B5563',
+    fontWeight: 'bold',
     marginBottom: 15,
+    marginTop: 10,
   },
   instructions: {
-    backgroundColor: '#F9FAFB',
-    padding: 10,
-    borderRadius: 6,
     fontSize: 9,
     lineHeight: 1.4,
-    color: '#4B5563',
+    fontWeight: 'bold',
     marginBottom: 15,
   },
   studentInfo: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    fontSize: 10,
-    marginBottom: 20,
+    fontSize: 9,
+    fontWeight: 'bold',
+    marginBottom: 25,
     borderBottomWidth: 1,
-    borderBottomColor: '#E5E7EB',
+    borderBottomColor: '#1A1A1A',
     paddingBottom: 8,
   },
   studentField: {
@@ -68,14 +64,11 @@ const styles = StyleSheet.create({
   sectionTitle: {
     fontSize: 11,
     fontWeight: 'bold',
-    textTransform: 'uppercase',
-    letterSpacing: 1,
   },
   sectionSubtitle: {
-    fontSize: 8,
-    color: '#4B5563',
+    fontSize: 9,
+    fontWeight: 'bold',
     marginTop: 2,
-    textTransform: 'uppercase',
   },
   sectionInstruction: {
     fontSize: 8,
@@ -85,60 +78,49 @@ const styles = StyleSheet.create({
   },
   questionRow: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
-    paddingVertical: 6,
-    borderBottomWidth: 0.5,
-    borderBottomColor: '#E5E7EB',
+    paddingVertical: 5,
+    fontSize: 9.5,
+    lineHeight: 1.5,
+  },
+  questionNum: {
+    fontWeight: 'bold',
+    marginRight: 6,
   },
   questionText: {
-    fontSize: 10,
-    lineHeight: 1.4,
     flex: 1,
-    paddingRight: 15,
-  },
-  questionMeta: {
-    fontSize: 8,
-    color: '#4B5563',
-    width: 90,
-    textAlign: 'right',
   },
   endMarker: {
     textAlign: 'center',
-    marginTop: 30,
+    marginTop: 35,
     paddingTop: 15,
     borderTopWidth: 1,
     borderTopColor: '#E5E7EB',
   },
   endText: {
-    fontSize: 8,
-    letterSpacing: 2,
-    color: '#4B5563',
+    fontSize: 9,
+    fontWeight: 'bold',
+    letterSpacing: 1,
   },
   answerHeader: {
     fontSize: 12,
     fontWeight: 'bold',
-    textTransform: 'uppercase',
     marginBottom: 15,
     borderBottomWidth: 1,
-    borderBottomColor: '#111111',
+    borderBottomColor: '#1A1A1A',
     paddingBottom: 5,
   },
   answerRow: {
     flexDirection: 'row',
-    paddingVertical: 5,
-    borderBottomWidth: 0.5,
-    borderBottomColor: '#E5E7EB',
+    paddingVertical: 6,
+    fontSize: 9.5,
+    lineHeight: 1.5,
   },
   answerNum: {
-    fontSize: 9,
     fontWeight: 'bold',
-    width: 40,
-    color: '#F97316',
+    marginRight: 8,
   },
   answerText: {
-    fontSize: 9,
     flex: 1,
-    lineHeight: 1.4,
   }
 });
 
@@ -154,26 +136,24 @@ export const QuestionPaperPDF: React.FC<PDFProps> = ({ paper }) => {
       {/* PAGE 1: EXAM SHEET */}
       <Page size="A4" style={styles.page}>
         <View style={styles.header}>
-          <Text style={styles.schoolName}>{schoolHeader.schoolName}</Text>
-          <Text style={styles.subHeader}>
-            SUBJECT: {schoolHeader.subject}   |   CLASS: {schoolHeader.className}
-          </Text>
+          <Text style={styles.schoolName}>{schoolHeader.schoolName || 'Delhi Public School, Sector-4, Bokaro'}</Text>
+          <Text style={styles.subHeader}>SUBJECT: {schoolHeader.subject}</Text>
+          <Text style={styles.subHeader}>CLASS: {schoolHeader.className}</Text>
         </View>
 
         <View style={styles.infoRow}>
-          <Text>TIME ALLOWED: {timeAllowed}</Text>
+          <Text>TIME ALLOWED: {timeAllowed || '45 minutes'}</Text>
           <Text>MAXIMUM MARKS: {maxMarks}</Text>
         </View>
 
-        <View style={styles.instructions}>
-          <Text style={{ fontWeight: 'bold', color: '#111111', marginBottom: 2 }}>General Instructions:</Text>
-          <Text>{instructions || 'All questions are compulsory unless stated otherwise.'}</Text>
-        </View>
+        <Text style={styles.instructions}>
+          {instructions || 'All questions are compulsory unless stated otherwise.'}
+        </Text>
 
         <View style={styles.studentInfo}>
-          <Text style={styles.studentField}>Name: ______________________</Text>
-          <Text style={styles.studentField}>Roll Number: _______________</Text>
-          <Text style={{ width: 120 }}>Section: __________</Text>
+          <Text style={styles.studentField}>Name: __________________________</Text>
+          <Text style={styles.studentField}>Roll Number: ___________________</Text>
+          <Text style={{ width: 150 }}>Class: {schoolHeader.className}   Section: _________</Text>
         </View>
 
         {sections.map((section, sIdx) => (
@@ -188,11 +168,9 @@ export const QuestionPaperPDF: React.FC<PDFProps> = ({ paper }) => {
 
             {section.questions.map((question, qIdx) => (
               <View key={qIdx} style={styles.questionRow}>
+                <Text style={styles.questionNum}>{question.number}.</Text>
                 <Text style={styles.questionText}>
-                  {question.number}.  {question.text}
-                </Text>
-                <Text style={styles.questionMeta}>
-                  [{question.difficulty}]  •  {question.marks}m
+                  [{question.difficulty}] {question.text} [{question.marks} {question.marks === 1 ? 'Mark' : 'Marks'}]
                 </Text>
               </View>
             ))}
@@ -200,7 +178,7 @@ export const QuestionPaperPDF: React.FC<PDFProps> = ({ paper }) => {
         ))}
 
         <View style={styles.endMarker}>
-          <Text style={styles.endText}>--- END OF QUESTION PAPER ---</Text>
+          <Text style={styles.endText}>END OF QUESTION PAPER</Text>
         </View>
       </Page>
 
@@ -208,14 +186,14 @@ export const QuestionPaperPDF: React.FC<PDFProps> = ({ paper }) => {
       {answerKey && answerKey.length > 0 && (
         <Page size="A4" style={styles.page}>
           <View style={styles.header}>
-            <Text style={styles.schoolName}>{schoolHeader.schoolName}</Text>
+            <Text style={styles.schoolName}>{schoolHeader.schoolName || 'Delhi Public School, Sector-4, Bokaro'}</Text>
             <Text style={styles.subHeader}>ANSWER KEY</Text>
           </View>
 
-          <View style={{ marginTop: 15 }}>
+          <View style={{ marginTop: 20 }}>
             {answerKey.map((item, idx) => (
               <View key={idx} style={styles.answerRow}>
-                <Text style={styles.answerNum}>Ans {item.number}.</Text>
+                <Text style={styles.answerNum}>{item.number}.</Text>
                 <Text style={styles.answerText}>{item.answer}</Text>
               </View>
             ))}
@@ -227,4 +205,3 @@ export const QuestionPaperPDF: React.FC<PDFProps> = ({ paper }) => {
 };
 
 export default QuestionPaperPDF;
-

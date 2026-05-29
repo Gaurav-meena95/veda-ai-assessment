@@ -2,56 +2,52 @@
 
 import React from 'react';
 import Link from 'next/link';
-import Button from '@/components/ui/Button';
 
 export const EmptyState: React.FC = () => {
   return (
-    <div className="flex flex-col items-center justify-center text-center p-12 bg-white rounded-2xl border border-border-custom shadow-sm max-w-xl mx-auto my-12 transition-all">
-      {/* Centered Premium SVG Illustration */}
-      <div className="w-48 h-48 mb-8 text-primary-orange/20 relative flex items-center justify-center">
-        <div className="absolute inset-0 bg-primary-orange/5 rounded-full blur-2xl animate-pulse" />
-        <svg 
-          width="120" 
-          height="120" 
-          viewBox="0 0 24 24" 
-          fill="none" 
-          stroke="currentColor" 
-          strokeWidth="1.2" 
-          strokeLinecap="round" 
-          strokeLinejoin="round" 
-          className="text-primary-orange drop-shadow-md relative z-10"
-        >
-          {/* Main document shell */}
-          <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z" />
-          <polyline points="14 2 14 8 20 8" />
-          {/* Question placeholder lines */}
-          <line x1="8" y1="13" x2="16" y2="13" strokeDasharray="2 1" />
-          <line x1="8" y1="17" x2="12" y2="17" strokeDasharray="3 1" />
-          {/* Star symbol for AI */}
-          <path d="M9.5 7h.01M6.5 9h.01" className="stroke-primary-orange/60" />
-          <path d="M18.5 13h.01" className="stroke-primary-orange/60" />
+    <div className="flex flex-col items-center justify-center text-center p-8 max-w-xl mx-auto my-6 select-none font-sans">
+      
+      {/* Premium Replicated SVG Illustration */}
+      <div className="w-48 h-48 mb-6 flex items-center justify-center relative">
+        <svg viewBox="0 0 200 200" className="w-full h-full">
+          {/* Outer soft grey background rings */}
+          <circle cx="100" cy="100" r="75" fill="#EAEAEA" opacity="0.3" />
+          <circle cx="100" cy="100" r="60" fill="#EAEAEA" opacity="0.6" />
+          <circle cx="100" cy="100" r="48" fill="#F3F4F6" />
+          
+          {/* Paper Document */}
+          <rect x="78" y="65" width="40" height="52" rx="4" fill="white" stroke="#CCCCCC" strokeWidth="2" />
+          <line x1="86" y1="78" x2="110" y2="78" stroke="#E5E7EB" strokeWidth="2.5" strokeLinecap="round" />
+          <line x1="86" y1="88" x2="102" y2="88" stroke="#E5E7EB" strokeWidth="2.5" strokeLinecap="round" />
+          <line x1="86" y1="98" x2="110" y2="98" stroke="#E5E7EB" strokeWidth="2.5" strokeLinecap="round" />
+          
+          {/* Magnifying Glass */}
+          <circle cx="118" cy="112" r="16" fill="none" stroke="#6B7280" strokeWidth="2.5" />
+          <line x1="129" y1="123" x2="142" y2="136" stroke="#6B7280" strokeWidth="3" strokeLinecap="round" />
+          
+          {/* Red X Badge inside Magnifying Glass (Exactly matches screenshot) */}
+          <circle cx="118" cy="112" r="9" fill="#FF4D4D" />
+          <path d="M114.5 108.5 L121.5 115.5 M121.5 108.5 L114.5 115.5" stroke="white" strokeWidth="2" strokeLinecap="round" />
         </svg>
       </div>
 
       {/* Headline */}
-      <h3 className="text-xl font-bold text-text-primary mb-2">
+      <h3 className="text-xl font-bold text-[#1A1A1A] tracking-tight mb-2">
         No assignments yet
       </h3>
 
       {/* Subtitle description */}
-      <p className="text-sm text-text-secondary mb-8 max-w-sm leading-relaxed">
-        Create your first assignment to start collecting and grading student submissions...
+      <p className="text-xs text-[#6B7280] font-semibold leading-relaxed mb-6 max-w-sm">
+        Create your first assignment to start collecting and grading student submissions. You can set up rubrics, define marking criteria, and let AI assist with grading.
       </p>
 
-      {/* Call to action */}
+      {/* Call to action pill button */}
       <Link href="/assignments/create" passHref>
-        <Button 
-          variant="dark" 
-          size="pill-dark"
-          className="shadow-md hover:scale-[1.02] active:scale-98 duration-100 font-semibold px-8"
+        <button 
+          className="bg-[#1A1A1A] hover:bg-black text-white py-3 px-6 rounded-full font-bold text-xs shadow-md transition-all duration-150 active:scale-98"
         >
-          + Create Your First Assignment
-        </Button>
+          Create Your First Assignment
+        </button>
       </Link>
     </div>
   );

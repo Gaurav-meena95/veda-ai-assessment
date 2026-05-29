@@ -31,7 +31,7 @@ const startServer = async () => {
     await (0, db_1.default)();
     // 2. Initialize and attach WebSocket client structures
     wsService_1.default.initWebSocketServer(server);
-    // 3. Listen on configured port 5000
+    // 3. Listen on configured port 3000
     server.listen(env_1.default.PORT, () => {
         console.log(`[VedaAI Server] API Server actively listening on http://localhost:${env_1.default.PORT}`);
         console.log(`[VedaAI Server] WebSocket Server listening at ws://localhost:${env_1.default.PORT}`);

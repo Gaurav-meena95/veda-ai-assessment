@@ -62,16 +62,16 @@ export default function AssignmentsPage() {
   });
 
   return (
-    <div className="flex flex-col min-h-[calc(100vh-130px)] select-none">
+    <div className="flex flex-col min-h-[calc(100vh-130px)] select-none font-sans">
       
-      {/* Title Header area with active green dot */}
-      <div className="flex items-center gap-3 mb-2">
-        <span className="w-2.5 h-2.5 bg-active-green rounded-full shadow-sm shadow-green-500/50 animate-pulse" />
-        <h1 className="text-2xl font-extrabold tracking-tight text-text-primary">
+      {/* Title Header area with active green dot (Matches screenshot exactly) */}
+      <div className="flex items-center gap-2 mb-1">
+        <span className="w-2.5 h-2.5 bg-active-green rounded-full shadow-xs shadow-green-500/50 animate-pulse" />
+        <h1 className="text-2xl font-black tracking-tight text-text-primary">
           Assignments
         </h1>
       </div>
-      <p className="text-sm text-text-secondary mb-8">
+      <p className="text-xs font-semibold text-[#888888] mb-6">
         Manage and create assignments for your classes.
       </p>
 
@@ -117,14 +117,12 @@ export default function AssignmentsPage() {
               {/* Floating Bottom Center "+ Create Assignment" pill button */}
               <div className="fixed bottom-8 left-1/2 -translate-x-1/2 z-40">
                 <Link href="/assignments/create" passHref>
-                  <Button 
-                    variant="dark" 
-                    size="pill-dark"
-                    className="flex items-center gap-2.5 shadow-xl shadow-black/15 px-8 font-bold border border-white/5 active:scale-95 hover:scale-[1.04] duration-150"
+                  <button 
+                    className="flex items-center justify-center gap-2 bg-[#1A1A1A] hover:bg-black text-white px-8 py-3.5 rounded-full font-bold text-xs shadow-xl active:scale-95 duration-100 border border-white/5"
                   >
-                    <Plus size={18} className="text-primary-orange stroke-[3px]" />
+                    <Plus size={16} className="stroke-[3px] text-white" />
                     <span>Create Assignment</span>
-                  </Button>
+                  </button>
                 </Link>
               </div>
             </div>

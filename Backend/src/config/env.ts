@@ -5,7 +5,7 @@ import path from 'path';
 dotenv.config({ path: path.resolve(__dirname, '../../.env') });
 
 export const env = {
-  PORT: Number(process.env.PORT || '5000'),
+  PORT: Number(process.env.PORT || '3000'),
   MONGODB_URI: process.env.MONGODB_URI || '',
   UPSTASH_REDIS_HOST: process.env.UPSTASH_REDIS_HOST || '',
   UPSTASH_REDIS_PORT: Number(process.env.UPSTASH_REDIS_PORT || '6379'),

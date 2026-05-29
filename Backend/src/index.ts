@@ -10,10 +10,7 @@ const app = express();
 const server = createServer(app);
 
 // CORS middlewares enabling secure local integrations
-app.use(cors({
-  origin: ['http://localhost:3000', 'http://127.0.0.1:3000'],
-  credentials: true,
-}));
+app.use(cors());
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -34,7 +31,8 @@ const startServer = async (): Promise<void> => {
   // 2. Initialize and attach WebSocket client structures
   wsService.initWebSocketServer(server);
 
-  // 3. Listen on configured port 5000
+  
+  const PORT = process.env.PORT || 3000
   server.listen(env.PORT, () => {
     console.log(`[VedaAI Server] API Server actively listening on http://localhost:${env.PORT}`);
     console.log(`[VedaAI Server] WebSocket Server listening at ws://localhost:${env.PORT}`);
