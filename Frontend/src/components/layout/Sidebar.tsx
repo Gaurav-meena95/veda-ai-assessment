@@ -34,12 +34,11 @@ export const Sidebar: React.FC = () => {
     <aside className="w-[260px] fixed left-0 top-0 h-screen bg-white border-r border-border-custom flex flex-col select-none z-30 font-sans">
       {/* VedaAI Logo Header */}
       <div className="p-6 pb-4 flex items-center gap-2.5">
-        <div className="w-10 h-10 bg-black rounded-xl flex items-center justify-center shadow-md relative overflow-hidden group">
-          {/* Stylized V Logo Mark from Screenshot */}
-          <svg viewBox="0 0 100 100" className="w-6 h-6 text-orange-500 fill-current">
-            <path d="M15 15 C 35 15, 45 45, 50 85 C 55 45, 65 15, 85 15 C 65 35, 55 55, 50 85 C 45 55, 35 35, 15 15 Z" />
-          </svg>
-        </div>
+        <img 
+          src="/logo.png" 
+          alt="VedaAI Logo" 
+          className="w-10 h-10 object-contain rounded-xl shadow-xs"
+        />
         <span className="text-2xl font-black tracking-tight text-text-primary">
           Veda<span className="text-primary-orange">AI</span>
         </span>

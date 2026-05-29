@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Bricolage_Grotesque, Geist_Mono } from "next/font/google";
 import { Toaster } from 'react-hot-toast';
 import Sidebar from '@/components/layout/Sidebar';
 import Header from '@/components/layout/Header';
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const bricolageGrotesque = Bricolage_Grotesque({
+  variable: "--font-bricolage-grotesque",
   subsets: ["latin"],
+  weight: ['300', '400', '500', '600', '700', '800'],
 });
 
 const geistMono = Geist_Mono({
@@ -27,7 +28,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased text-text-primary bg-bg-page min-h-screen`}>
+      <body className={`${bricolageGrotesque.variable} ${geistMono.variable} antialiased text-text-primary bg-bg-page min-h-screen font-sans`}>
         {/* Toast Notifier */}
         <Toaster 
           position="top-right" 
