@@ -1,4 +1,5 @@
 import { Request, Response } from 'express';
+import mongoose from 'mongoose';
 import Assignment from '../models/Assignment';
 import queueService from '../services/queueService';
 import { QuestionTypeConfig } from '../types';
@@ -83,6 +84,12 @@ export const getAssignments = async (_req: Request, res: Response): Promise<void
 export const getAssignmentById = async (req: Request, res: Response): Promise<void> => {
   try {
     const { id } = req.params;
+
+    if (!mongoose.Types.ObjectId.isValid(id) || id === 'undefined') {
+      res.status(400).json({ error: 'Invalid Assignment ID structure' });
+      return;
+    }
+
     const assignment = await Assignment.findById(id);
 
     if (!assignment) {
@@ -103,6 +110,12 @@ export const getAssignmentById = async (req: Request, res: Response): Promise<vo
 export const deleteAssignment = async (req: Request, res: Response): Promise<void> => {
   try {
     const { id } = req.params;
+
+    if (!mongoose.Types.ObjectId.isValid(id) || id === 'undefined') {
+      res.status(400).json({ error: 'Invalid Assignment ID structure' });
+      return;
+    }
+
     const deleted = await Assignment.findByIdAndDelete(id);
 
     if (!deleted) {

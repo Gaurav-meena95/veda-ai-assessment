@@ -60,10 +60,14 @@ const startServer = async (): Promise<void> => {
   wsService.initWebSocketServer(server);
 
   
-  const PORT = process.env.PORT || 3000
-  server.listen(env.PORT, () => {
-    console.log(`[VedaAI Server] API Server actively listening on http://localhost:${env.PORT}`);
-    console.log(`[VedaAI Server] WebSocket Server listening at ws://localhost:${env.PORT}`);
+  let PORT = Number(process.env.PORT || env.PORT || 3001);
+  if (PORT === 3000) {
+    PORT = 3001; // Automatically prevent collision with Next.js on port 3000
+  }
+
+  server.listen(PORT, () => {
+    console.log(`[VedaAI Server] API Server actively listening on http://localhost:${PORT}`);
+    console.log(`[VedaAI Server] WebSocket Server listening at ws://localhost:${PORT}`);
   });
 };
 
