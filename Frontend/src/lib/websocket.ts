@@ -13,9 +13,10 @@ export const connectWebSocket = (assignmentId?: string) => {
     ws.close();
   }
 
+  const baseWsUrl = process.env.NEXT_PUBLIC_WS_URL || 'ws://localhost:3000';
   const url = assignmentId 
-    ? `ws://localhost:3000?assignmentId=${assignmentId}`
-    : 'ws://localhost:3000';
+    ? `${baseWsUrl}?assignmentId=${assignmentId}`
+    : baseWsUrl;
     
   try {
     ws = new WebSocket(url);
