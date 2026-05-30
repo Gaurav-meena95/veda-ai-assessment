@@ -109,13 +109,13 @@ export const Step1Details: React.FC = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-8 select-none font-sans max-w-3xl mx-auto">
+    <form onSubmit={handleSubmit} className="space-y-6 sm:space-y-8 select-none font-sans max-w-3xl mx-auto">
       
-      {/* 2-Segment top Progress Bar details (replicated exactly from screenshot) */}
-      <div className="bg-white border border-[#E5E7EB] rounded-[32px] p-8 shadow-[0_8px_30px_rgb(0,0,0,0.02)] space-y-6">
+      {/* Wizard Form details card */}
+      <div className="bg-white border border-[#E5E7EB] rounded-[24px] sm:rounded-[32px] p-5 sm:p-8 shadow-[0_8px_30px_rgb(0,0,0,0.02)] space-y-6">
         
         <div>
-          <h2 className="text-xl font-black text-[#1A1A1A] tracking-tight">
+          <h2 className="text-lg sm:text-xl font-black text-[#1A1A1A] tracking-tight">
             Assignment Details
           </h2>
           <p className="text-xs text-[#888888] font-semibold mt-0.5">
@@ -198,7 +198,7 @@ export const Step1Details: React.FC = () => {
 
         {/* SECTION 3: Question Types Config */}
         <div className="space-y-4">
-          <div className="flex justify-between items-center px-1 text-xs font-black text-[#1A1A1A] tracking-tight border-b border-gray-100 pb-2">
+          <div className="hidden sm:flex justify-between items-center px-1 text-xs font-black text-[#1A1A1A] tracking-tight border-b border-gray-100 pb-2">
             <span>Question Type</span>
             <div className="flex gap-14 pr-8">
               <span>No. of Questions</span>

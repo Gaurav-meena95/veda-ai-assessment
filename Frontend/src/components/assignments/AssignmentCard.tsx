@@ -77,7 +77,7 @@ export const AssignmentCard: React.FC<AssignmentCardProps> = ({ assignment, onDe
       </div>
 
       {/* Bottom row: Assigned Date & Due Date matching screenshot */}
-      <div className="flex items-center justify-between text-2xs font-extrabold text-[#6B7280] tracking-tight mt-6">
+      <div className="flex flex-wrap items-center justify-between gap-y-2 text-2xs font-extrabold text-[#6B7280] tracking-tight mt-6">
         <div>
           <span>Assigned on : </span>
           <span className="text-[#1A1A1A]">{formattedAssigned}</span>
