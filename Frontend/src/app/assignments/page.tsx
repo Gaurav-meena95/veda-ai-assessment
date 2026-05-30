@@ -14,6 +14,10 @@ export default function AssignmentsPage() {
   const { assignments, setAssignments, deleteAssignment } = useAssignmentStore();
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
+  
+  const [selectedSubject, setSelectedSubject] = useState('All');
+  const [selectedClass, setSelectedClass] = useState('All');
+  const [selectedStatus, setSelectedStatus] = useState('All');
 
   // Fetch all assignments on mount
   useEffect(() => {
@@ -48,17 +52,32 @@ export default function AssignmentsPage() {
     }
   };
 
-  // Filter assignments based on search query
+  // Compute unique values from the active assignments list dynamically
+  const subjects = ['All', ...Array.from(new Set(assignments.map((a) => a.subject).filter(Boolean)))];
+  const classes = ['All', ...Array.from(new Set(assignments.map((a) => a.className).filter(Boolean)))];
+  const statuses = ['All', 'pending', 'processing', 'generated', 'failed'];
+
+  // Filter assignments based on search query and active dropdown values
   const filteredAssignments = assignments.filter((assignment) => {
     const query = searchQuery.toLowerCase().trim();
-    if (!query) return true;
-
-    return (
+    const matchesSearch = !query || (
       assignment.title?.toLowerCase().includes(query) ||
       assignment.subject?.toLowerCase().includes(query) ||
       assignment.className?.toLowerCase().includes(query)
     );
+
+    const matchesSubject = selectedSubject === 'All' || assignment.subject === selectedSubject;
+    const matchesClass = selectedClass === 'All' || assignment.className === selectedClass;
+    const matchesStatus = selectedStatus === 'All' || assignment.status === selectedStatus;
+
+    return matchesSearch && matchesSubject && matchesClass && matchesStatus;
   });
+
+  const handleResetFilters = () => {
+    setSelectedSubject('All');
+    setSelectedClass('All');
+    setSelectedStatus('All');
+  };
 
   return (
     <div className="flex flex-col min-h-[calc(100vh-130px)] select-none font-sans">
@@ -94,16 +113,26 @@ export default function AssignmentsPage() {
               <FilterBar 
                 searchQuery={searchQuery} 
                 onSearchChange={setSearchQuery} 
+                subjects={subjects}
+                classes={classes}
+                statuses={statuses}
+                selectedSubject={selectedSubject}
+                onSubjectChange={setSelectedSubject}
+                selectedClass={selectedClass}
+                onClassChange={setSelectedClass}
+                selectedStatus={selectedStatus}
+                onStatusChange={setSelectedStatus}
+                onReset={handleResetFilters}
               />
 
               {/* Assignments grid listing or Search Empty Results */}
               {filteredAssignments.length === 0 ? (
                 <div className="text-center py-20 bg-white border border-border-custom rounded-2xl p-8 max-w-md mx-auto">
                   <p className="text-sm font-semibold text-text-secondary mb-2">
-                    No results found for &quot;{searchQuery}&quot;
+                    No results found matching active criteria.
                   </p>
                   <p className="text-xs text-text-secondary">
-                    Try adjusting your keywords or clearing the search text.
+                    Try adjusting your filter selectors or search query text.
                   </p>
                 </div>
               ) : (
