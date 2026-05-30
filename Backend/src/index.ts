@@ -34,6 +34,20 @@ app.get('/env-check', (req, res) => {
   });
 });
 
+// Middleware to ensure DB connection is fully established before processing API requests
+app.use(async (req, res, next) => {
+  try {
+    await connectDB();
+    next();
+  } catch (error) {
+    console.error('[VedaAI DB Middleware] Connection failed:', error);
+    res.status(500).json({
+      error: 'Database Connection Error',
+      message: error instanceof Error ? error.message : String(error),
+    });
+  }
+});
+
 // Primary assignments controller route mapping
 app.use('/api/assignments', assignmentRoutes);
 
