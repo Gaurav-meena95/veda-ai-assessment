@@ -59,7 +59,11 @@ export const createAssignment = async (req: Request, res: Response): Promise<voi
     });
   } catch (error) {
     console.error('[VedaAI Controller] createAssignment Error:', error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    res.status(500).json({
+      error: 'Internal Server Error',
+      message: error instanceof Error ? error.message : String(error),
+      stack: error instanceof Error ? error.stack : undefined
+    });
   }
 };
 
@@ -69,7 +73,10 @@ export const getAssignments = async (_req: Request, res: Response): Promise<void
     res.status(200).json(assignments);
   } catch (error) {
     console.error('[VedaAI Controller] getAssignments Error:', error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    res.status(500).json({
+      error: 'Internal Server Error',
+      message: error instanceof Error ? error.message : String(error)
+    });
   }
 };
 
@@ -86,7 +93,10 @@ export const getAssignmentById = async (req: Request, res: Response): Promise<vo
     res.status(200).json(assignment);
   } catch (error) {
     console.error('[VedaAI Controller] getAssignmentById Error:', error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    res.status(500).json({
+      error: 'Internal Server Error',
+      message: error instanceof Error ? error.message : String(error)
+    });
   }
 };
 
@@ -103,7 +113,10 @@ export const deleteAssignment = async (req: Request, res: Response): Promise<voi
     res.status(200).json({ success: true, message: 'Assignment deleted successfully' });
   } catch (error) {
     console.error('[VedaAI Controller] deleteAssignment Error:', error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    res.status(500).json({
+      error: 'Internal Server Error',
+      message: error instanceof Error ? error.message : String(error)
+    });
   }
 };
 

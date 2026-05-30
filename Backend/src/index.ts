@@ -23,6 +23,17 @@ app.get('/health', (req, res) => {
   res.status(200).json({ status: 'ok', timestamp: new Date().toISOString() });
 });
 
+// Environment variable status check (without leaking actual secrets)
+app.get('/env-check', (req, res) => {
+  res.status(200).json({
+    MONGODB_URI: env.MONGODB_URI ? 'Defined' : 'Undefined',
+    UPSTASH_REDIS_HOST: env.UPSTASH_REDIS_HOST ? 'Defined' : 'Undefined',
+    UPSTASH_REDIS_PORT: env.UPSTASH_REDIS_PORT ? 'Defined' : 'Undefined',
+    UPSTASH_REDIS_PASSWORD: env.UPSTASH_REDIS_PASSWORD ? 'Defined' : 'Undefined',
+    GROQ_API_KEY: env.GROQ_API_KEY ? 'Defined' : 'Undefined',
+  });
+});
+
 // Primary assignments controller route mapping
 app.use('/api/assignments', assignmentRoutes);
 
