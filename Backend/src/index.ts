@@ -56,10 +56,7 @@ app.use('/api/auth', authRoutes);
 
 // Server bootstrapping sequence
 const startServer = async (): Promise<void> => {
-  // 1. Establish database mapping
-  await connectDB();
-  
-  // 2. Initialize and attach WebSocket client structures
+  // 1. Initialize and attach WebSocket client structures
   wsService.initWebSocketServer(server);
 
   
