@@ -5,6 +5,8 @@ import env from './config/env';
 import connectDB from './config/db';
 import wsService from './services/wsService';
 import assignmentRoutes from './routes/assignments';
+import authRoutes from './routes/auth';
+import './worker';
 
 const app = express();
 const server = createServer(app);
@@ -50,6 +52,7 @@ app.use(async (req, res, next) => {
 
 // Primary assignments controller route mapping
 app.use('/api/assignments', assignmentRoutes);
+app.use('/api/auth', authRoutes);
 
 // Server bootstrapping sequence
 const startServer = async (): Promise<void> => {

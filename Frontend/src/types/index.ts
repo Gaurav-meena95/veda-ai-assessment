@@ -61,3 +61,12 @@ export interface CreateAssignmentFormData {
   questionTypes: QuestionTypeConfig[];
   additionalInfo: string;
 }
+
+export interface User {
+  id: string;
+  name: string;
+  email: string;
+  role: string;
+  school: string;
+  avatarColor: string;
+}

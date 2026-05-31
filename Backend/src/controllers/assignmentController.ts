@@ -85,7 +85,7 @@ export const getAssignmentById = async (req: Request, res: Response): Promise<vo
   try {
     const { id } = req.params;
 
-    if (!mongoose.Types.ObjectId.isValid(id) || id === 'undefined') {
+    if (typeof id !== 'string' || !mongoose.Types.ObjectId.isValid(id) || id === 'undefined') {
       res.status(400).json({ error: 'Invalid Assignment ID structure' });
       return;
     }
@@ -111,7 +111,7 @@ export const deleteAssignment = async (req: Request, res: Response): Promise<voi
   try {
     const { id } = req.params;
 
-    if (!mongoose.Types.ObjectId.isValid(id) || id === 'undefined') {
+    if (typeof id !== 'string' || !mongoose.Types.ObjectId.isValid(id) || id === 'undefined') {
       res.status(400).json({ error: 'Invalid Assignment ID structure' });
       return;
     }

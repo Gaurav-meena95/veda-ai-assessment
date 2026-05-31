@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { Bricolage_Grotesque, Geist_Mono } from "next/font/google";
 import { Toaster } from 'react-hot-toast';
-import Sidebar from '@/components/layout/Sidebar';
-import Header from '@/components/layout/Header';
+import AppLayout from '@/components/layout/AppLayout';
 import "./globals.css";
 
 const bricolageGrotesque = Bricolage_Grotesque({
@@ -20,8 +19,6 @@ export const metadata: Metadata = {
   title: "VedaAI - Assessment Creator",
   description: "Create premium assessments and student question papers in minutes with VedaAI.",
 };
-
-import MobileNavigation from '@/components/layout/MobileNavigation';
 
 export default function RootLayout({
   children,
@@ -45,29 +42,9 @@ export default function RootLayout({
           }} 
         />
         
-        {/* Main Application Layout Wrapper */}
-        <div className="flex min-h-screen">
-          {/* Desktop Sidebar Navigation */}
-          <div className="hidden lg:block shrink-0">
-            <Sidebar />
-          </div>
-
-          {/* Mobile Specific Floating Nav & Header */}
-          <MobileNavigation />
-
-          {/* Core Content Container */}
-          <div className="flex-1 pl-0 lg:pl-[260px] flex flex-col min-h-screen w-full">
-            {/* Desktop Top Bar Header */}
-            <div className="hidden lg:block">
-              <Header />
-            </div>
-
-            {/* Main view content body with mobile buffer offsets */}
-            <main className="flex-1 p-4 sm:p-8 bg-bg-page pt-20 pb-24 lg:pt-8 lg:pb-8 w-full max-w-full overflow-hidden">
-              {children}
-            </main>
-          </div>
-        </div>
+        <AppLayout>
+          {children}
+        </AppLayout>
       </body>
     </html>
   );

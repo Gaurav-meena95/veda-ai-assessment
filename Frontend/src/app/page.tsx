@@ -14,11 +14,13 @@ import {
   Loader2
 } from 'lucide-react';
 import { useAssignmentStore } from '@/store/useAssignmentStore';
+import { useAuthStore } from '@/store/useAuthStore';
 import { getAssignments } from '@/lib/api';
 import { format, parseISO } from 'date-fns';
 
 export default function Home() {
   const { assignments, setAssignments } = useAssignmentStore();
+  const { user } = useAuthStore();
   const [loading, setLoading] = useState(true);
 
   // Fetch latest assignments on mount
@@ -59,11 +61,11 @@ export default function Home() {
         <div className="flex items-center gap-2">
           <span className="w-2.5 h-2.5 bg-active-green rounded-full shadow-xs shadow-green-500/50 animate-pulse" />
           <h1 className="text-2xl font-black tracking-tight text-text-primary">
-            Welcome back, John Doe!
+            Welcome back, {user?.name || 'John Doe'}!
           </h1>
         </div>
         <p className="text-xs font-semibold text-[#888888]">
-          Here is your VedaAI teaching overview for Delhi Public School, Bokaro Steel City.
+          Here is your VedaAI teaching overview for {user?.school || 'Delhi Public School, Bokaro Steel City'}.
         </p>
       </div>
 

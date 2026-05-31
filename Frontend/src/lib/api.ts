@@ -8,6 +8,21 @@ const api = axios.create({
   },
 });
 
+api.interceptors.request.use(
+  (config) => {
+    if (typeof window !== 'undefined') {
+      const token = localStorage.getItem('veda_auth_token');
+      if (token) {
+        config.headers.Authorization = `Bearer ${token}`;
+      }
+    }
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
+
 export const getAssignments = async (): Promise<Assignment[]> => {
   const response = await api.get('/assignments');
   return response.data;
