@@ -62,8 +62,11 @@ export const useAuthStore = create<AuthState>((set, get) => ({
 
       set({ token, user, isAuthenticated: true, loading: false });
       return true;
-    } catch (err: any) {
-      const errMsg = err.response?.data?.error || 'Invalid credentials or connection issue.';
+    } catch (err) {
+      let errMsg = 'Invalid credentials or connection issue.';
+      if (axios.isAxiosError(err)) {
+        errMsg = err.response?.data?.error || errMsg;
+      }
       set({ error: errMsg, loading: false });
       return false;
     }
@@ -88,8 +91,11 @@ export const useAuthStore = create<AuthState>((set, get) => ({
 
       set({ token, user, isAuthenticated: true, loading: false });
       return true;
-    } catch (err: any) {
-      const errMsg = err.response?.data?.error || 'Account registration failed. Please try again.';
+    } catch (err) {
+      let errMsg = 'Account registration failed. Please try again.';
+      if (axios.isAxiosError(err)) {
+        errMsg = err.response?.data?.error || errMsg;
+      }
       set({ error: errMsg, loading: false });
       return false;
     }
