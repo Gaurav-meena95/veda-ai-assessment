@@ -8,8 +8,7 @@ export const connectDB = async (): Promise<void> => {
   }
 
   if (!env.MONGODB_URI || env.MONGODB_URI.includes('<user>')) {
-    console.warn('[VedaAI DB] MongoDB URI placeholder detected or undefined. Skipping database connection.');
-    return;
+    throw new Error('[VedaAI DB] MongoDB connection URI is undefined or contains placeholders. Please verify environment variables.');
   }
 
   try {
